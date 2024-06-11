@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  game: one
+  league_user: one
+  home_team_goals: 1
+  away_team_goals: 1
+  home_team_et_goals: 1
+  away_team_et_goals: 1
+  penalties_winner: MyString
+  total_points: 1
+
+two:
+  game: two
+  league_user: two
+  home_team_goals: 1
+  away_team_goals: 1
+  home_team_et_goals: 1
+  away_team_et_goals: 1
+  penalties_winner: MyString
+  total_points: 1

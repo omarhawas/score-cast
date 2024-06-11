@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  admin_user_id: one
+  winner_user_id: one
+  tournament: one
+
+two:
+  name: MyString
+  admin_user_id: two
+  winner_user_id: two
+  tournament: two

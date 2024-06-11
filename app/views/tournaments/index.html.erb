@@ -1,0 +1,13 @@
+<% @tournaments.each do |tournament| %>
+  <section class="tournament">
+    <div class="summary">
+      <h2><%= link_to(tournament.name, tournament) %></h2>
+      <h3><%= tournament.start_date %></h3>
+      <h3><%= tournament.end_date %></h3>
+    </div>
+  </section>
+<% end %>
+
+<section class="admin">
+  <%= link_to "Add New Tournament", new_tournament_path, class: "button" %>
+</section>
