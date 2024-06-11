@@ -1,0 +1,12 @@
+<% @leagues.each do |league| %>
+  <section class="league">
+    <div class="summary">
+      <h2><%= link_to(league.name, league) %></h2>
+      <h3><%= league.tournament_id %></h3>
+    </div>
+  </section>
+<% end %>
+
+<section class="admin">
+  <%= link_to "Add New League", new_tournament_league_path(@tournament), class: "button" %>
+</section>

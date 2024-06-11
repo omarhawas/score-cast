@@ -1,0 +1,2 @@
+class GamePredictionsController < ApplicationController
+end
