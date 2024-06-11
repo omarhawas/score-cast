@@ -1,17 +1,28 @@
 <section class="tournament-details">
   <div class="details">
     <h1><%= @tournament.name %></h1>
-    <h1><%= @tournament.start_date %></h1>
-    <h1><%= @tournament.end_date %></h1>
-    <h1><%= @tournament.status %></h1>
   </div>
 
-<section class="admin">
-  <%= link_to "Edit", edit_tournament_path(@tournament), class: "button" %>
-  <%= link_to "Delete", tournament_path(@tournament), class: "button", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-  <%= link_to "All Tournaments", tournaments_path(@tournament), class:"button" %>
-</section>
-<section><%= link_to 'New League', new_tournament_league_path(@tournament), class: 'btn btn-primary' %></section>
+  <section class="admin">
+    <%= link_to "Edit", edit_tournament_path(@tournament), class: "button" %>
+    <%= link_to "Delete", tournament_path(@tournament), class: "button", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+    <%= link_to "All Tournaments", tournaments_path(@tournament), class:"button" %>
+  </section>
+  <section><%= link_to 'New League', new_tournament_league_path(@tournament), class: 'btn btn-primary' %></section>
+  <section class="leagues">
+      <% if @tournament.leagues.any? %>
+    <h2>Leagues:</h2>
+    <ul>
+      <% @tournament.leagues.each do |league| %>
+        <li>
+          <%= link_to league.name, tournament_league_path(@tournament, league) %>
+        </li>
+      <% end %>
+    </ul>
+    <% else %>
+    <p>No leagues found for this tournament.</p>
+    <% end %>
+  </section>
 </section>
 
 

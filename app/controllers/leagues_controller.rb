@@ -3,7 +3,6 @@ class LeaguesController < ApplicationController
     before_action :set_admin_user, only: [:new, :create]
 
     def index
-        @tournament = Tournament.find_by(id: params[:tournament_id])
         @leagues = @tournament.leagues if @tournament && @tournament.leagues.exists?
     end
 
@@ -55,7 +54,8 @@ class LeaguesController < ApplicationController
     private
 
     def set_tournament
-        @tournament = Tournament.find(params[:tournament_id])
+        @tournament = Tournament.find_by(id: params[:tournament_id])
+        redirect_to root_path, alert: "Tournament not found!" unless @tournament
     end
     
     def set_admin_user
