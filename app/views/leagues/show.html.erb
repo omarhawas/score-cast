@@ -1,5 +1,13 @@
 <h1> <%= @league.name %> </h1>
 
+<% @league.league_users.each do |league_user| %>
+  <section class="league_user">
+    <div class="summary">
+      <h3><%= league_user.username %></h3>
+    </div>
+  </section>
+<% end %>
+
 
 <%= link_to 'Edit', edit_tournament_league_path(@tournament, @league) %>
 <%= link_to 'Delete', tournament_league_path(@tournament, @league), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
@@ -8,5 +16,5 @@
 
 
 <% if current_user %>
-  <%= link_to 'Join League', new_league_league_user_path(@league), class: 'btn btn-primary' %>
+  <%= link_to 'Join League', tournament_league_path(@tournament, @league, joining: true), class: 'btn btn-primary' %>
 <% end %>
