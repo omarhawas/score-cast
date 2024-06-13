@@ -1,0 +1,28 @@
+<%= form_with(model: [@tournament, @game], url: tournament_games_path(@tournament)) do |form| %>
+  <div>
+    <%= form.label :home_team %>
+    <%= form.text_field :home_team %>
+  </div>
+
+  <div>
+    <%= form.label :away_team %>
+    <%= form.text_field :away_team %>
+  </div>
+
+  <div>
+    <%= form.label :game_start %>
+    <%= form.datetime_local_field :game_start %>
+  </div>
+
+  <div>
+    <%= form.label :game_end %>
+    <%= form.datetime_local_field :game_end %>
+  </div>
+
+  <div>
+    <%= form.label :knockout_game %>
+    <%= form.check_box :knockout_game %>
+  </div>
+
+  <%= form.submit "Create Game" %>
+<% end %>

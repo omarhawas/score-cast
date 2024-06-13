@@ -1,0 +1,15 @@
+<section class="games">
+    <h2>Games</h2>
+
+      <% if @tournament.games.any? %>
+        <ul>
+          <% @tournament.games.each do |game| %>
+            <li>
+              <%= link_to game.home_team + ' vs ' + game.away_team, tournament_game_path(@tournament, game) %>
+            </li>
+          <% end %>
+        </ul>
+        <% else %>
+          <p>No games found for this tournament.</p>
+      <% end %>
+  </section>

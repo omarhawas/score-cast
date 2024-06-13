@@ -1,4 +1,4 @@
-<%= form_with(model: @league, url: tournament_leagues_path(@tournament)) do |form| %>
+<%= form_with(model: [@tournament, @league], local: true) do |form| %>
   <% if @league.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@league.errors.count, "error") %> prohibited this league from being saved:</h2>
@@ -16,6 +16,12 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <% if @league.new_record? %>
+      <%= form.submit 'Create League' %>
+    <% else %>
+      <%= form.submit 'Update League' %>
+      <%= link_to 'Delete', tournament_league_path(@tournament, @league), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+    <% end %>
   </div>
 <% end %>
+

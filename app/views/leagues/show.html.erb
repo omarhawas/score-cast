@@ -1,1 +1,12 @@
 <h1> <%= @league.name %> </h1>
+
+
+<%= link_to 'Edit', edit_tournament_league_path(@tournament, @league) %>
+<%= link_to 'Delete', tournament_league_path(@tournament, @league), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+
+<%= link_to 'Back', tournament_path(@league.tournament) %> 
+
+
+<% if current_user %>
+  <%= link_to 'Join League', new_league_league_user_path(@league), class: 'btn btn-primary' %>
+<% end %>
