@@ -3,28 +3,29 @@ Rails.application.routes.draw do
   root "tournaments#index"
 
   resources :tournaments do
-    resources :leagues, only: [:index, :show, :new, :create] # Nested routes for leagues under tournaments
-    resources :games, only: [:index, :show, :new, :create]    # Nested routes for games under tournaments
+    resources :leagues 
+    resources :games    
   end
 
-  resources :leagues, only: [:show, :edit, :update, :destroy] do
-    resources :league_users, only: [:index, :show, :new, :create] # Nested routes for league_users under leagues
+  resources :leagues do
+    resources :league_users
   end
 
   resources :users do
-    resources :league_users, only: [:index, :show, :new, :create] # Nested routes for league_users under users
+    resources :league_users
   end
+  
   get "signup" => "users#new"
 
-  resources :league_users, only: [:show, :edit, :update, :destroy] do
-    resources :game_predictions, only: [:index, :show, :new, :create] # Nested routes for game_predictions under league_users
+  resources :league_users do
+    resources :game_predictions 
   end
 
-  resources :games, only: [:show, :edit, :update, :destroy] do
-    resources :game_predictions, only: [:index, :show, :new, :create] # Nested routes for game_predictions under games
+  resources :games do
+    resources :game_predictions 
   end
 
-  resources :game_predictions, only: [:edit, :update, :destroy] # GamePredictions are nested under both league_users and games
+  resources :game_predictions
 
   resource :session, only: [:new, :create, :destroy]
 end

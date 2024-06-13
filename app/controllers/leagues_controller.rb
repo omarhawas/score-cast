@@ -1,69 +1,77 @@
 class LeaguesController < ApplicationController
-    before_action :set_tournament
-    before_action :set_admin_user, only: [:new, :create]
-
+    before_action :set_league_and_tournament, only: [:show, :edit, :update, :destroy]
+  
     def index
-        @leagues = @tournament.leagues if @tournament && @tournament.leagues.exists?
+      if params[:tournament_id]
+        @tournament = Tournament.find(params[:tournament_id])
+        @leagues = @tournament.leagues
+      else
+        @leagues = League.all
+      end
     end
-
+  
     def show
-        @league = League.find(params[:id])
     end
-
+  
     def edit
-        @league = League.find(params[:id])
     end
-
+  
     def new
-        @league = League.new
+        @tournament = Tournament.find(params[:tournament_id])
+        @league = @tournament.leagues.new
     end
-
+  
     def create
-        @league = League.new(league_params)
-        @league.admin_user_id = current_user.id
-        @league.tournament = Tournament.find(params[:tournament_id])
-        @league.winner_user_id = -1
-
-        if @league.save
-            redirect_to root_url, notice: "League successfully created!"
-        else 
-            render :new, status: :unprocessable_entity
-        end
+        @tournament = Tournament.find(params[:tournament_id])
+      @league = @tournament.leagues.new(league_params)
+      @league.admin_user_id = current_user.id
+      @league.winner_user_id = -1
+  
+      if @league.save
+        redirect_to root_url, notice: "League successfully created!"
+      else
+        Rails.logger.debug "Params: #{params.inspect}"
+        render :new, status: :unprocessable_entity
+      end
     end
 
     def update
-        @league = League.find(params[:id])
-        
         if @league.update(league_params)
-            redirect_to @league, notice: "League successfully updated!"
-          else
-            render :edit, status: :unprocessable_entity
-        end
-    end
-
-    def destroy
-        @league = League.find(params[:id])
-
-        if @league.destroy
-          redirect_to leagues_path, alert: "League successfully deleted!"
+          redirect_to tournament_league_path(@tournament, @league), notice: "League successfully updated!"
         else
-          redirect_to @league, alert: "Failed to delete league!"
+          render :edit, status: :unprocessable_entity
         end
     end
-
+      
+    def destroy
+        Rails.logger.debug "Params: #{params.inspect}"
+        @tournament = Tournament.find(params[:tournament_id])
+        @league = @tournament.leagues.find(params[:id])
+      
+        if @league.destroy
+          redirect_to tournament_path(@tournament), alert: "League successfully deleted!"
+        else
+          redirect_to tournament_league_path(@tournament, @league), alert: "Failed to delete league!"
+        end
+    end
+  
     private
-
-    def set_tournament
-        @tournament = Tournament.find_by(id: params[:tournament_id])
-        redirect_to root_path, alert: "Tournament not found!" unless @tournament
+  
+    def set_league_and_tournament
+        Rails.logger.debug "Params: #{params.inspect}"
+      if params[:tournament_id]
+        @tournament = Tournament.find(params[:tournament_id])
+        @league = @tournament.leagues.find(params[:id])
+      else
+        @league = League.find(params[:id])
+        @tournament = @league.tournament
+      end
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_path, alert: "League or Tournament not found!"
     end
-    
-    def set_admin_user
-        redirect_to root_path, alert: 'You need to be logged in to create a league' unless logged_in?
-    end
-
+  
     def league_params
-        params.require(:league).permit(:name, :admin_user_id, :winner_user_id, :tournament_id)
+      params.require(:league).permit(:name, :admin_user_id, :winner_user_id, :tournament_id)
     end
-
-end
+  end
+  
