@@ -11,6 +11,16 @@ class LeaguesController < ApplicationController
     end
   
     def show
+        puts params
+        if params[:joining]
+            found_league_user = LeagueUser.where(league_id: @league.id, user_id: current_user.id) 
+            if found_league_user.count == 0
+                league_user = LeagueUser.new(league_id: @league.id, user_id: current_user.id, username: current_user.email, total_points: 0)
+                league_user.save
+
+                redirect_to tournament_league_path, notice: "You have successfully joined this league"
+            end 
+        end
     end
   
     def edit
