@@ -1,4 +1,4 @@
 class Game < ApplicationRecord
   belongs_to :tournament
-  has_many :predictions
+  has_many :game_predictions
 end

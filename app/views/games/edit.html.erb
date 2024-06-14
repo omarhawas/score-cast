@@ -26,6 +26,31 @@
     <%= form.check_box :knockout_game %>
   </div>
 
+  <div>
+    <%= form.label :home_team_goals %>
+    <%= form.text_field :home_team_goals %>
+  </div>
+
+  <div>
+    <%= form.label :away_team_goals %>
+    <%= form.text_field :away_team_goals %>
+  </div>
+
+  <div>
+    <%= form.label :home_team_et_goals %>
+    <%= form.text_field :home_team_et_goals %>
+  </div>
+
+  <div>
+    <%= form.label :away_team_et_goals %>
+    <%= form.text_field :away_team_et_goals %>
+  </div>
+
+  <div>
+    <%= form.label :penalties_winner %>
+    <%= form.text_field :penalties_winner %>
+  </div>
+
   <%= form.submit "Update Game" %>
 <% end %>
 
