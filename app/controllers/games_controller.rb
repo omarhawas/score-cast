@@ -31,6 +31,7 @@ class GamesController < ApplicationController
   
     def update
       if @game.update(game_params)
+        calculate_points(@game)
         redirect_to tournament_path, notice: "Game successfully updated!"
       else
         render :edit, status: :unprocessable_entity
@@ -56,6 +57,30 @@ class GamesController < ApplicationController
     end
   
     def game_params
-      params.require(:game).permit(:home_team, :away_team, :game_start, :game_end, :knockout_game)
+      params.require(:game).permit(:home_team, :away_team, :game_start, :game_end, :knockout_game, :home_team_goals, :away_team_goals, :home_team_et_goals, :away_team_et_goals, :penalties_winner)
     end
+
+    def calculate_points(game)
+      game.game_predictions.each do |game_prediction|
+        points_awarded = 0
+        if game.knockout_game
+
+        else
+          if game.home_team_goals == game_prediction.home_team_goals && game.away_team_goals == game_prediction.away_team_goals
+            points_awarded = 3
+          else
+            actual_score_difference = game.home_team_goals - game.away_team_goals
+            predicted_score_difference = game_prediction.home_team_goals - game_prediction.away_team_goals
+            if actual_score_difference == predicted_score_difference
+              points_awarded = 2
+            elsif (actual_score_difference > 0 && predicted_score_difference > 0) || (actual_score_difference < 0 && predicted_score_difference < 0)
+              points_awarded = 1
+            end
+          end  
+        end
+        game_prediction.update(total_points: points_awarded)
+        game_prediction.save
+      end
+    end
+  
   end
