@@ -11,9 +11,12 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2024_06_09_140853) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "game_predictions", force: :cascade do |t|
-    t.integer "game_id", null: false
-    t.integer "league_user_id", null: false
+    t.bigint "game_id", null: false
+    t.bigint "league_user_id", null: false
     t.integer "home_team_goals"
     t.integer "away_team_goals"
     t.integer "home_team_et_goals"
@@ -27,7 +30,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_09_140853) do
   end
 
   create_table "games", force: :cascade do |t|
-    t.integer "tournament_id", null: false
+    t.bigint "tournament_id", null: false
     t.string "home_team"
     t.string "away_team"
     t.integer "home_team_goals"
@@ -44,8 +47,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_09_140853) do
   end
 
   create_table "league_users", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "league_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "league_id", null: false
     t.string "username"
     t.integer "total_points"
     t.datetime "created_at", null: false
@@ -58,7 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_09_140853) do
     t.string "name"
     t.integer "admin_user_id", null: false
     t.integer "winner_user_id", null: false
-    t.integer "tournament_id", null: false
+    t.bigint "tournament_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tournament_id"], name: "index_leagues_on_tournament_id"
