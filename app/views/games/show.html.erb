@@ -26,3 +26,4 @@
 <%= link_to 'Edit', edit_game_path(@game) %>
 <%= link_to 'Back', tournament_games_path(@tournament) %>
 <%= link_to 'Delete', tournament_game_path(@tournament), class: "button", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }%>
+<%= link_to 'Add Prediction', new_game_game_prediction_path(@game), class: "button" %>

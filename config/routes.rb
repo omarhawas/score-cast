@@ -25,7 +25,5 @@ Rails.application.routes.draw do
     resources :game_predictions 
   end
 
-  resources :game_predictions
-
   resource :session, only: [:new, :create, :destroy]
 end

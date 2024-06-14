@@ -1,0 +1,8 @@
+<% if @is_updating %>
+    <h1> Update Prediction </h1>
+<% else %>
+    <h1> Create New Prediction </h1>
+<% end %>
+
+
+<%= render 'form', game_prediction: @game_prediction %>

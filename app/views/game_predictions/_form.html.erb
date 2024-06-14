@@ -1,0 +1,29 @@
+<%= form_with(model: [@game, @game_prediction], url: game_game_predictions_path(@game)) do |form| %>
+  <div>
+    <%= form.label @game.home_team %>
+    <%= form.number_field :home_team_goals %>
+  </div>
+
+  <div>
+    <%= form.label @game.away_team %>
+    <%= form.number_field :away_team_goals %>
+  </div>
+
+<% if @game.knockout_game %>
+  <div>
+    <%= form.label "#{@game.home_team} extra time goals" %>
+    <%= form.number_field :home_team_et_goals %>
+  </div>
+
+  <div>
+    <%= form.label "#{@game.away_team} extra time goals" %>
+    <%= form.number_field :away_team_et_goals %>
+  </div>
+<% end %>  
+
+<% if @is_updating %>
+    <%= form.submit "Update Prediction" %>
+<% else %>
+    <%= form.submit "Add Prediction" %> 
+<% end %>
+<% end %>
