@@ -1,7 +1,7 @@
 class LeagueUser < ApplicationRecord
   belongs_to :user
   belongs_to :league
-  has_many :game_predictions
+  has_many :game_predictions, dependent: :destroy
 
 
   def get_game_predictions

@@ -1,46 +1,51 @@
-<section class="tournament-details">
-  <div class="details">
-    <h1><%= @tournament.name %></h1>
+<section class="tournament-details container mt-4">
+  <div class="details card mb-3">
+    <div class="card-body">
+      <h1 class="card-title"><%= @tournament.name %></h1>
+    </div>
   </div>
 
-  <section class="admin">
-    <%= link_to "Edit", edit_tournament_path(@tournament), class: "button" %>
-    <%= link_to "Delete", tournament_path(@tournament), class: "button", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-    <%= link_to "All Tournaments", tournaments_path(@tournament), class:"button" %>
+  <section class="admin mb-3">
+    <%= link_to "Edit", edit_tournament_path(@tournament), class: "btn btn-warning me-2" %>
+    <%= link_to "Delete", tournament_path(@tournament), class: "btn btn-danger me-2", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+    <%= link_to "All Tournaments", tournaments_path(@tournament), class: "btn btn-secondary" %>
   </section>
-  <section><%= link_to 'New League', new_tournament_league_path(@tournament), class: 'btn btn-primary' %></section>
-  <section class="leagues">
-      <% if @tournament.leagues.any? %>
-    <h2>Leagues:</h2>
-    <ul>
-      <% @tournament.leagues.each do |league| %>
-        <li>
-          <%= link_to league.name, tournament_league_path(@tournament, league) %>
-        </li>
-      <% end %>
-    </ul>
+
+  <section class="leagues mb-3">
+    <% if @tournament.leagues.any? %>
+      <h2>Leagues</h2>
+      <ul class="list-group">
+        <% @tournament.leagues.each do |league| %>
+          <li class="list-group-item">
+            <%= link_to league.name, tournament_league_path(@tournament, league), class: "league-link text-danger" %>
+          </li>
+        <% end %>
+      </ul>
     <% else %>
-    <p>No leagues found for this tournament.</p>
+      <p>No leagues found for this tournament.</p>
     <% end %>
   </section>
-  <section class="button">
-    <%= link_to "Create New Game", new_tournament_game_path(@tournament) %>
-  </section>
-  <section class="games">
-    <h2>Games</h2>
 
-      <% if @tournament.games.any? %>
-        <ul>
-          <% @tournament.games.each do |game| %>
-            <li>
-              <%= link_to game.home_team + ' vs ' + game.away_team, tournament_game_path(@tournament, game) %>
-            </li>
-          <% end %>
-        </ul>
-        <% else %>
-          <p>No games found for this tournament.</p>
-      <% end %>
+  <section class="new-league mb-3">
+    <%= link_to 'New League', new_tournament_league_path(@tournament), class: 'btn btn-primary' %>
+  </section>
+
+  <section class="games mb-3">
+    <h2>Games</h2>
+    <% if @tournament.games.any? %>
+      <ul class="list-group">
+        <% @tournament.games.each do |game| %>
+          <li class="list-group-item">
+            <%= link_to game.home_team + ' vs ' + game.away_team, tournament_game_path(@tournament, game), class: "game-link text-danger" %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No games found for this tournament.</p>
+    <% end %>
+  </section>
+
+  <section class="new-game mb-3">
+    <%= link_to "Create New Game", new_tournament_game_path(@tournament), class: "btn btn-success" %>
   </section>
 </section>
-
-

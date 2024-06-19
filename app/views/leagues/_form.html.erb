@@ -1,27 +1,28 @@
-<%= form_with(model: [@tournament, @league], local: true) do |form| %>
-  <% if @league.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@league.errors.count, "error") %> prohibited this league from being saved:</h2>
-      <ul>
-        <% @league.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<div class="container">
+  <%= form_with(model: [@tournament, @league], local: true) do |form| %>
+    <% if @league.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@league.errors.count, "error") %> prohibited this league from being saved:</h2>
+        <ul>
+          <% @league.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="actions">
+      <% if @league.new_record? %>
+        <%= form.submit 'Create League', class: 'btn btn-primary' %>
+      <% else %>
+        <%= form.submit 'Update League', class: 'btn btn-primary' %>
+        <%= link_to 'Delete', tournament_league_path(@tournament, @league), method: :delete, class: 'btn btn-danger', data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+      <% end %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="actions">
-    <% if @league.new_record? %>
-      <%= form.submit 'Create League' %>
-    <% else %>
-      <%= form.submit 'Update League' %>
-      <%= link_to 'Delete', tournament_league_path(@tournament, @league), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
-    <% end %>
-  </div>
-<% end %>
-
+</div>

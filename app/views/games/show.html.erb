@@ -1,29 +1,37 @@
-<h1>Game Details</h1>
+<div class="container">
+  <section class="game-details">
+    <h1>Game Details</h1>
 
-<table>
-  <tr>
-    <th>Home Team</th>
-    <td><%= @game.home_team %></td>
-  </tr>
-  <tr>
-    <th>Away Team</th>
-    <td><%= @game.away_team %></td>
-  </tr>
-  <tr>
-    <th>Start Time</th>
-    <td><%= @game.game_start %></td>
-  </tr>
-  <tr>
-    <th>End Time</th>
-    <td><%= @game.game_end %></td>
-  </tr>
-  <tr>
-    <th>Knockout Game</th>
-    <td><%= @game.knockout_game ? 'Yes' : 'No' %></td>
-  </tr>
-</table>
+    <div class="details">
+      <table class="table table-bordered">
+        <tr>
+          <th>Home Team</th>
+          <td><%= @game.home_team %></td>
+        </tr>
+        <tr>
+          <th>Away Team</th>
+          <td><%= @game.away_team %></td>
+        </tr>
+        <tr>
+          <th>Start Time</th>
+          <td><%= @game.game_start %></td>
+        </tr>
+        <tr>
+          <th>End Time</th>
+          <td><%= @game.game_end %></td>
+        </tr>
+        <tr>
+          <th>Knockout Game</th>
+          <td><%= @game.knockout_game ? 'Yes' : 'No' %></td>
+        </tr>
+      </table>
+    </div>
 
-<%= link_to 'Edit', edit_game_path(@game) %>
-<%= link_to 'Back', tournament_games_path(@tournament) %>
-<%= link_to 'Delete', tournament_game_path(@tournament), class: "button", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }%>
-<%= link_to 'Add Prediction', new_game_game_prediction_path(@game), class: "button" %>
+    <section class="admin-actions">
+      <%= link_to 'Edit', edit_game_path(@game), class: 'btn btn-warning' %>
+      <%= link_to 'Delete', tournament_game_path(@tournament, @game), class: 'btn btn-danger', data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+      <%= link_to 'Back', tournament_games_path(@tournament), class: 'btn btn-secondary' %>
+      <%= link_to 'Add Prediction', new_game_game_prediction_path(@game), class: 'btn btn-primary' %>
+    </section>
+  </section>
+</div>

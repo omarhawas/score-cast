@@ -1,13 +1,17 @@
-<% @tournaments.each do |tournament| %>
-  <section class="tournament">
-    <div class="summary">
-      <h2><%= link_to(tournament.name, tournament) %></h2>
-      <h3><%= tournament.start_date %></h3>
-      <h3><%= tournament.end_date %></h3>
-    </div>
-  </section>
-<% end %>
+<div class="container mt-4 homepage-background">
+  <% @tournaments.each do |tournament| %>
+    <section class="tournament">
+      <div class="tournament-summary card mb-3">
+        <div class="card-body">
+          <h2 class="card-title"><%= link_to tournament.name, tournament, class: 'text-danger' %></h2>
+          <h3 class="card-subtitle mb-2">Start Date: <%= tournament.start_date.strftime("%Y-%m-%d") %></h3>
+          <h3 class="card-subtitle mb-2">End Date: <%= tournament.end_date.strftime("%Y-%m-%d") %></h3>
+        </div>
+      </div>
+    </section>
+  <% end %>
 
-<section class="admin">
-  <%= link_to "Add New Tournament", new_tournament_path, class: "button" %>
-</section>
+  <section class="admin">
+    <%= link_to "Add New Tournament", new_tournament_path, class: "btn btn-primary" %>
+  </section>
+</div>
