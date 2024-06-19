@@ -1,22 +1,28 @@
-<h1> <%= @league.name %> </h1>
-
-<% @league.league_users.each do |league_user| %>
-  <section class="league_user">
-    <div class="summary">
-      <h3><%= league_user.username %></h3>
-      <h3><%= league_user.get_game_predictions() %></h3>
-
+<div class="container">
+  <section class="league-details">
+    <div class="details">
+      <h1><%= @league.name %></h1>
     </div>
+
+    <section class="league-users">
+      <% @league.league_users.each do |league_user| %>
+        <div class="league-user-summary">
+          <h3><%= league_user.user.name %></h3>
+          <p>Points: <%= league_user.get_game_predictions() %></p>
+        </div>
+      <% end %>
+    </section>
+
+    <section class="admin-actions">
+      <%= link_to 'Edit', edit_tournament_league_path(@tournament, @league), class: 'btn btn-warning' %>
+      <%= link_to 'Delete', tournament_league_path(@tournament, @league), class: 'btn btn-danger', data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+      <%= link_to 'Back', tournament_path(@league.tournament), class: 'btn btn-secondary' %>
+    </section>
+
+    <% if current_user %>
+      <section class="join-league">
+        <%= link_to 'Join League', tournament_league_path(@tournament, @league, joining: true), class: 'btn btn-primary' %>
+      </section>
+    <% end %>
   </section>
-<% end %>
-
-
-<%= link_to 'Edit', edit_tournament_league_path(@tournament, @league) %>
-<%= link_to 'Delete', tournament_league_path(@tournament, @league), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-
-<%= link_to 'Back', tournament_path(@league.tournament) %> 
-
-
-<% if current_user %>
-  <%= link_to 'Join League', tournament_league_path(@tournament, @league, joining: true), class: 'btn btn-primary' %>
-<% end %>
+</div>

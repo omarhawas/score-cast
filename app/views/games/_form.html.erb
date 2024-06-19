@@ -1,28 +1,32 @@
-<%= form_with(model: [@tournament, @game], url: tournament_games_path(@tournament)) do |form| %>
-  <div>
-    <%= form.label :home_team %>
-    <%= form.text_field :home_team %>
-  </div>
+<div class="container">
+  <%= form_with(model: [@tournament, @game], url: tournament_games_path(@tournament)) do |form| %>
+    <div class="field">
+      <%= form.label :home_team %>
+      <%= form.text_field :home_team, class: "form-control" %>
+    </div>
 
-  <div>
-    <%= form.label :away_team %>
-    <%= form.text_field :away_team %>
-  </div>
+    <div class="field">
+      <%= form.label :away_team %>
+      <%= form.text_field :away_team, class: "form-control" %>
+    </div>
 
-  <div>
-    <%= form.label :game_start %>
-    <%= form.datetime_local_field :game_start %>
-  </div>
+    <div class="field">
+      <%= form.label :game_start %>
+      <%= form.datetime_local_field :game_start, class: "form-control" %>
+    </div>
 
-  <div>
-    <%= form.label :game_end %>
-    <%= form.datetime_local_field :game_end %>
-  </div>
+    <div class="field">
+      <%= form.label :game_end %>
+      <%= form.datetime_local_field :game_end, class: "form-control" %>
+    </div>
 
-  <div>
-    <%= form.label :knockout_game %>
-    <%= form.check_box :knockout_game %>
-  </div>
+    <div class="field">
+      <%= form.label :knockout_game, class: "form-check-label" %>
+      <%= form.check_box :knockout_game, class: "form-check-input custom-checkbox" %>
+    </div>
 
-  <%= form.submit "Create Game" %>
-<% end %>
+    <div class="actions">
+      <%= form.submit "Create Game", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
