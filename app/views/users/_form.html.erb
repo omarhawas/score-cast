@@ -1,21 +1,29 @@
-<%= form_with(model: user) do |f| %>
+<%= form_with(model: user, class: "user-form") do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control", autofocus: true %>
+  </div>
 
-  <%= f.label :name %>
-  <%= f.text_field :name, autofocus: true %>
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.email_field :email, class: "form-control" %>
+  </div>
 
-  <%= f.label :email %>
-  <%= f.email_field :email %>
+  <div class="form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: "form-control" %>
+  </div>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+  <div class="form-group">
+    <%= f.label :password_confirmation, "Confirm Password" %>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
+  </div>
 
-  <%= f.label :password_confirmation, "Confirm Password" %>
-  <%= f.password_field :password_confirmation %>
-
-  <% if user.new_record? %>
-    <%= f.submit "Create Account" %>
-  <% else %>
-    <%= f.submit "Update Account" %>
-  <% end %>
-
+  <div class="actions">
+    <% if user.new_record? %>
+      <%= f.submit "Create Account", class: "btn btn-primary" %>
+    <% else %>
+      <%= f.submit "Update Account", class: "btn btn-primary" %>
+    <% end %>
+  </div>
 <% end %>

@@ -1,11 +1,17 @@
-<h1>Sign In</h1>
+<section class="signin">
+  <h1>Sign In</h1>
 
-<%= form_with(url: session_path) do |f| %>
-  <%= f.label :email %>
-  <%= f.email_field :email, autofocus: true %>
-  
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+  <%= form_with(url: session_path, class: "signin-form") do |f| %>
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true, class: "form-control" %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.password_field :password, class: "form-control" %>
+    </div>
 
-  <%= f.submit "Sign In" %>
-<% end %>
+    <%= f.submit "Sign In", class: "btn btn-primary mt-3" %>
+  <% end %>
+</section>
