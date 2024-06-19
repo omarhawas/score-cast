@@ -1,15 +1,15 @@
 <section class="games">
-    <h2>Games</h2>
+  <h2>Games</h2>
 
-      <% if @tournament.games.any? %>
-        <ul>
-          <% @tournament.games.each do |game| %>
-            <li>
-              <%= link_to game.home_team + ' vs ' + game.away_team, tournament_game_path(@tournament, game) %>
-            </li>
-          <% end %>
-        </ul>
-        <% else %>
-          <p>No games found for this tournament.</p>
+  <% if @tournament.games.any? %>
+    <ul class="game-list">
+      <% @tournament.games.each do |game| %>
+        <li class="game-item">
+          <%= link_to "#{game.home_team} vs #{game.away_team}", tournament_game_path(@tournament, game), class: "game-link" %>
+        </li>
       <% end %>
-  </section>
+    </ul>
+  <% else %>
+    <p class="no-games">No games found for this tournament.</p>
+  <% end %>
+</section>
