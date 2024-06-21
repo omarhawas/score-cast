@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @game_predictions.each do |prediction| %>
+      <% @game_predictions.sort_by { |prediction| prediction.game.id }.each do |prediction| %>
         <% game = prediction.game %>
         <% actual_points = prediction.total_points %>
         <tr>
