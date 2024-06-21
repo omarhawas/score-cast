@@ -15,19 +15,19 @@
     <tbody>
       <% @game_predictions.sort_by { |prediction| prediction.game.id }.each do |prediction| %>
         <% game = prediction.game %>
-        <% actual_points = prediction.total_points %>
+        <% actual_points = game.home_team_goals.present? && game.away_team_goals.present? ? prediction.total_points : 0 %>
         <tr>
           <td><%= game.id %></td>
           <td><%= game.home_team %></td>
           <td><%= game.away_team %></td>
-          <td><%= "#{game.home_team_goals} - #{game.away_team_goals}" %></td>
-          <td><%= "#{prediction.home_team_goals} - #{prediction.away_team_goals}" %></td>
+          <td><%= game.home_team_goals.present? && game.away_team_goals.present? ? "#{game.home_team_goals} - #{game.away_team_goals}" : "Game not started" %></td>
+          <td><%= prediction.home_team_goals.present? && prediction.away_team_goals.present? ? "#{prediction.home_team_goals} - #{prediction.away_team_goals}" : "Prediction not available" %></td>
           <td><%= actual_points %></td>
         </tr>
       <% end %>
       <tr>
         <td colspan="5" style="text-align: right;">Total Points:</td>
-        <td><%= @game_predictions.sum(&:total_points) %></td>
+        <td><%= @game_predictions.sum { |prediction| prediction.total_points.to_i }.to_i %></td>
       </tr>
     </tbody>
   </table>
