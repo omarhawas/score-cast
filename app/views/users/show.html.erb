@@ -1,34 +1,37 @@
 <h1><%= @user.name %></h1>
 
-<div class="table-responsive">
-  <table class="table table-striped custom-table">
-    <thead>
-      <tr>
-        <th>Game</th>
-        <th>Home Team</th>
-        <th>Away Team</th>
-        <th>Actual Score</th>
-        <th>Predicted Score</th>
-        <th>Points Gained</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @game_predictions.sort_by { |prediction| prediction.game.id }.each do |prediction| %>
-        <% game = prediction.game %>
-        <% actual_points = game.home_team_goals.present? && game.away_team_goals.present? ? prediction.total_points : 0 %>
+<% @game_predictions.group_by { |prediction| prediction.game.tournament }.each do |tournament, predictions| %>
+  <div class="table-responsive">
+    <h2><%= tournament.name %></h2>
+    <table class="table table-striped custom-table">
+      <thead>
         <tr>
-          <td><%= game.id %></td>
-          <td><%= game.home_team %></td>
-          <td><%= game.away_team %></td>
-          <td><%= game.home_team_goals.present? && game.away_team_goals.present? ? "#{game.home_team_goals} - #{game.away_team_goals}" : "Game not started" %></td>
-          <td><%= prediction.home_team_goals.present? && prediction.away_team_goals.present? ? "#{prediction.home_team_goals} - #{prediction.away_team_goals}" : "Prediction not available" %></td>
-          <td><%= actual_points %></td>
+          <th>Game</th>
+          <th>Home Team</th>
+          <th>Away Team</th>
+          <th>Actual Score</th>
+          <th>Predicted Score</th>
+          <th>Points Gained</th>
         </tr>
-      <% end %>
-      <tr>
-        <td colspan="5" style="text-align: right;">Total Points:</td>
-        <td><%= @game_predictions.sum { |prediction| prediction.total_points.to_i }.to_i %></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+      </thead>
+      <tbody>
+        <% predictions.sort_by { |prediction| prediction.game.id }.each do |prediction| %>
+          <% game = prediction.game %>
+          <% actual_points = game.home_team_goals.present? && game.away_team_goals.present? ? prediction.total_points : 0 %>
+          <tr>
+            <td><%= game.id %></td>
+            <td><%= game.home_team %></td>
+            <td><%= game.away_team %></td>
+            <td><%= game.home_team_goals.present? && game.away_team_goals.present? ? "#{game.home_team_goals} - #{game.away_team_goals}" : "Game not started" %></td>
+            <td><%= prediction.home_team_goals.present? && prediction.away_team_goals.present? ? "#{prediction.home_team_goals} - #{prediction.away_team_goals}" : "Prediction not available" %></td>
+            <td><%= actual_points %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td colspan="5" style="text-align: right;">Total Points:</td>
+          <td><%= predictions.sum { |prediction| prediction.total_points.to_i }.to_i %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<% end %>
