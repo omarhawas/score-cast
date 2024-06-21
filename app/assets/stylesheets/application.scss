@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
  @import "bootstrap";
 
  /* Global styles */
@@ -70,386 +71,315 @@
    color: #e0245e !important;
  }
  
-/* Specific styles for league-details page */
-.league-details {
-  margin-top: 2rem;
-}
-
-.league-users {
-  margin-top: 1rem;
-}
-
-.league-user-summary {
-  background-color: #1c2731;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 8px;
-}
-
-.join-league {
-  margin-top: 1rem;
-}
-
-/* Form styles */
-form {
-  margin-top: 2rem;
-}
-
-#error_explanation {
-  color: #dc3545;
-  background-color: #f8d7da;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 8px;
-}
-
-.field {
-  margin-bottom: 1rem;
-}
-
-.actions {
-  margin-top: 1rem;
-}
-
-
-/* Specific styles for form fields */
-form label {
-  color: #ffffff;
-}
-
-form input[type="text"],
-form select {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  background-color: #273444;
-  color: #ffffff;
-}
-
-form input[type="date"] {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  background-color: #273444;
-  color: #ffffff;
-}
-
-form input[type="submit"] {
-  background-color: #1da1f2;
-  border-color: #1da1f2;
-  color: #ffffff;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-form input[type="submit"]:hover {
-  background-color: #0d8ddb;
-  border-color: #0d8ddb;
-}
-
-/* Specific styles for form fields */
-form label {
-  color: #ffffff;
-}
-
-form input[type="text"],
-form input[type="datetime-local"],
-form input[type="checkbox"] {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  background-color: #273444;
-  color: #ffffff;
-}
-
-form input[type="submit"] {
-  background-color: #1da1f2;
-  border-color: #1da1f2;
-  color: #ffffff;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-form input[type="submit"]:hover {
-  background-color: #0d8ddb;
-  border-color: #0d8ddb;
-}
-
-/* Table styles */
-.table {
-  background-color: #192734;
-  color: #ffffff;
-  width: 100%;
-  margin-bottom: 1rem;
-}
-
-.table th,
-.table td {
-  border: 1px solid #36404a;
-  padding: 0.75rem;
-}
-
-.table th {
-  background-color: #273444;
-}
-
-/* Button styles */
-.btn {
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-right: 0.5rem;
-}
-
-.btn-secondary {
-  background-color: #6c757d;
-  border-color: #6c757d;
-}
-
-.btn-secondary:hover {
-  background-color: #5a6268;
-  border-color: #545b62;
-}
-
-.btn-warning {
-  background-color: #ffc107;
-  border-color: #ffc107;
-}
-
-.btn-warning:hover {
-  background-color: #e0a800;
-  border-color: #d39e00;
-}
-
-.btn-danger {
-  background-color: #dc3545;
-  border-color: #dc3545;
-}
-
-.btn-danger:hover {
-  background-color: #c82333;
-  border-color: #bd2130;
-}
-
-.btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
-}
-
-.btn-primary:hover {
-  background-color: #0069d9;
-  border-color: #0062cc;
-}
-
-.btn-primary:focus,
-.btn-primary:active {
-  background-color: #0062cc;
-  border-color: #005cbf;
-}
-
-.btn-success {
-  background-color: #28a745;
-  border-color: #28a745;
-}
-
-.btn-success:hover {
-  background-color: #218838;
-  border-color: #1e7e34;
-}
-
-.btn-info {
-  background-color: #17a2b8;
-  border-color: #17a2b8;
-}
-
-.btn-info:hover {
-  background-color: #138496;
-  border-color: #117a8b;
-}
-
-.btn-light {
-  background-color: #f8f9fa;
-  border-color: #f8f9fa;
-  color: #212529;
-}
-
-.btn-light:hover {
-  background-color: #e2e6ea;
-  border-color: #dae0e5;
-}
-
-.btn-dark {
-  background-color: #343a40;
-  border-color: #343a40;
-}
-
-.btn-dark:hover {
-  background-color: #23272b;
-  border-color: #1d2124;
-}
-
-.btn-link {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.btn-link:hover {
-  color: #0056b3;
-  text-decoration: underline;
-}
-
-.signin {
-  margin: 2rem auto;
-  max-width: 400px;
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 2rem;
-  border-radius: 8px;
-  color: #ffffff; /* Adjust text color for better readability */
-
-  h1 {
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-
-  .field {
-    margin-bottom: 1rem;
-  }
-
-  .btn-primary {
-    background-color: #1da1f2;
-    border-color: #1da1f2;
-    width: 100%;
-  }
-
-  .btn-primary:hover {
-    background-color: #0d8ddb;
-    border-color: #0d8ddb;
-  }
-
-  .btn-primary:focus, .btn-primary:active {
-    background-color: #0d8ddb;
-    border-color: #0d8ddb;
-  }
-
-  .form-control {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  }
-}
-
-.user-profile {
-  margin: 2rem auto;
-  max-width: 600px;
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 2rem;
-  border-radius: 8px;
-  color: #ffffff; /* Adjust text color for better readability */
-
-  h1 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: #8899a6; /* Adjust secondary text color */
-  }
-
-  .actions {
-    margin-top: 1rem;
-  }
-
-  .btn {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-  }
-
-  .btn-primary {
-    background-color: #1da1f2;
-    border-color: #1da1f2;
-  }
-
-  .btn-primary:hover {
-    background-color: #0d8ddb;
-    border-color: #0d8ddb;
-  }
-
-  .btn-primary:focus, .btn-primary:active {
-    background-color: #0d8ddb;
-    border-color: #0d8ddb;
-  }
-
-  .btn-danger {
-    background-color: #e0245e;
-    border-color: #e0245e;
-  }
-
-  .btn-danger:hover {
-    background-color: #c81e51;
-    border-color: #c81e51;
-  }
-
-  .btn-danger:focus, .btn-danger:active {
-    background-color: #c81e51;
-    border-color: #c81e51;
-  }
-}
-
-.user-form {
-  max-width: 400px;
-  margin: 2rem auto;
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 2rem;
-  border-radius: 8px;
-  color: #ffffff; /* Adjust text color for better readability */
-
-  .form-group {
-    margin-bottom: 1rem;
-  }
-
-  .form-control {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    background-color: #192734;
-    border: 1px solid #334155;
-    color: #ffffff;
-  }
-
-  .form-control:focus {
-    outline: none;
-    box-shadow: 0 0 0 0.2rem rgba(29, 161, 242, 0.5); /* Adjust focus color */
-  }
-
-  .actions {
-    margin-top: 1rem;
-  }
-
-  .btn-primary {
-    background-color: #1da1f2;
-    border-color: #1da1f2;
-  }
-
-  .btn-primary:hover {
-    background-color: #0d8ddb;
-    border-color: #0d8ddb;
-  }
-
-  .btn-primary:focus, .btn-primary:active {
-    background-color: #0d8ddb;
-    border-color: #0d8ddb;
-  }
-}
+ /* Specific styles for league-details page */
+ .league-details {
+   margin-top: 2rem;
+ }
+ 
+ .league-users {
+   margin-top: 1rem;
+ }
+ 
+ .league-user-summary {
+   background-color: #1c2731;
+   padding: 1rem;
+   margin-bottom: 1rem;
+   border-radius: 8px;
+ }
+ 
+ .join-league {
+   margin-top: 1rem;
+ }
+ 
+ /* Form styles */
+ form {
+   margin-top: 2rem;
+ }
+ 
+ #error_explanation {
+   color: #dc3545;
+   background-color: #f8d7da;
+   padding: 1rem;
+   margin-bottom: 1rem;
+   border-radius: 8px;
+ }
+ 
+ .field {
+   margin-bottom: 1rem;
+ }
+ 
+ .actions {
+   margin-top: 1rem;
+ }
+ 
+ /* Specific styles for form fields */
+ form label {
+   color: #ffffff;
+ }
+ 
+ form input[type="text"],
+ form select,
+ form input[type="date"] {
+   width: 100%;
+   padding: 0.5rem;
+   border: 1px solid #ced4da;
+   border-radius: 4px;
+   background-color: #273444;
+   color: #ffffff;
+ }
+ 
+ form input[type="submit"] {
+   background-color: #1da1f2;
+   border-color: #1da1f2;
+   color: #ffffff;
+   padding: 0.5rem 1rem;
+   border-radius: 4px;
+   cursor: pointer;
+ }
+ 
+ form input[type="submit"]:hover {
+   background-color: #0d8ddb;
+   border-color: #0d8ddb;
+ }
+ 
+ /* Custom table styles */
+ .custom-table {
+   width: 100%;
+   border-collapse: collapse;
+   background-color: #1c1e22; /* Dark background */
+   color: #ffffff; /* White text */
+   font-size: 14px; /* Adjust font size */
+   line-height: 1.5; /* Adjust line height */
+ }
+ 
+ .custom-table th,
+ .custom-table td {
+   padding: 10px 16px; /* Adjust padding */
+   border: 1px solid #2b2d33; /* Dark border */
+ }
+ 
+ .custom-table th {
+   background-color: #121416; /* Darker header background */
+   font-weight: bold;
+ }
+ 
+ .custom-table tbody tr:nth-child(odd) {
+   background-color: var(--bs-table-striped-bg); /* Dark alternate rows */
+ }
+ 
+ .custom-table tbody tr:nth-child(even) {
+   background-color: var(--bs-table-accent-bg); /* Accent alternate rows */
+ }
+ 
+ /* Button styles */
+ .btn {
+   padding: 0.5rem 1rem;
+   border-radius: 4px;
+   cursor: pointer;
+   margin-right: 0.5rem;
+ }
+ 
+ .btn-secondary {
+   background-color: #6c757d;
+   border-color: #6c757d;
+ }
+ 
+ .btn-secondary:hover {
+   background-color: #5a6268;
+   border-color: #545b62;
+ }
+ 
+ .btn-warning {
+   background-color: #ffc107;
+   border-color: #ffc107;
+ }
+ 
+ .btn-warning:hover {
+   background-color: #e0a800;
+   border-color: #d39e00;
+ }
+ 
+ .btn-danger {
+   background-color: #dc3545;
+   border-color: #dc3545;
+ }
+ 
+ .btn-danger:hover {
+   background-color: #c82333;
+   border-color: #bd2130;
+ }
+ 
+ .btn-success {
+   background-color: #28a745;
+   border-color: #28a745;
+ }
+ 
+ .btn-success:hover {
+   background-color: #218838;
+   border-color: #1e7e34;
+ }
+ 
+ .btn-info {
+   background-color: #17a2b8;
+   border-color: #17a2b8;
+ }
+ 
+ .btn-info:hover {
+   background-color: #138496;
+   border-color: #117a8b;
+ }
+ 
+ .btn-light {
+   background-color: #f8f9fa;
+   border-color: #f8f9fa;
+   color: #212529;
+ }
+ 
+ .btn-light:hover {
+   background-color: #e2e6ea;
+   border-color: #dae0e5;
+ }
+ 
+ .btn-dark {
+   background-color: #343a40;
+   border-color: #343a40;
+ }
+ 
+ .btn-dark:hover {
+   background-color: #23272b;
+   border-color: #1d2124;
+ }
+ 
+ .btn-link {
+   color: #007bff;
+   text-decoration: none;
+ }
+ 
+ .btn-link:hover {
+   color: #0056b3;
+   text-decoration: underline;
+ }
+ 
+ .signin {
+   margin: 2rem auto;
+   max-width: 400px;
+   background-color: rgba(0, 0, 0, 0.6);
+   padding: 2rem;
+   border-radius: 8px;
+   color: #ffffff;
+ 
+   h1 {
+     text-align: center;
+     margin-bottom: 1rem;
+   }
+ 
+   .field {
+     margin-bottom: 1rem;
+   }
+ 
+   .btn-primary {
+     background-color: #1da1f2;
+     border-color: #1da1f2;
+     width: 100%;
+   }
+ 
+   .btn-primary:hover {
+     background-color: #0d8ddb;
+     border-color: #0d8ddb;
+   }
+ 
+   .btn-primary:focus,
+   .btn-primary:active {
+     background-color: #0d8ddb;
+     border-color: #0d8ddb;
+   }
+ 
+   .form-control {
+     width: 100%;
+     padding: 0.75rem 1rem;
+     font-size: 1rem;
+     line-height: 1.5;
+     color: #495057;
+     background-color: #fff;
+     background-clip: padding-box;
+     border: 1px solid #ced4da;
+     border-radius: 0.25rem;
+     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+   }
+ }
+ 
+ .user-profile {
+   margin: 2rem auto;
+   max-width: 600px;
+   background-color: rgba(0, 0, 0, 0.6);
+   padding: 2rem;
+   border-radius: 8px;
+   color: #ffffff;
+ 
+   h1 {
+     font-size: 2rem;
+     margin-bottom: 0.5rem;
+   }
+ 
+   h2 {
+     font-size: 1.5rem;
+     margin-bottom: 1rem;
+     color: #8899a6;
+   }
+ 
+   .actions {
+     margin-top: 1rem;
+   }
+ 
+   .btn {
+     padding: 0.5rem 1rem;
+     font-size: 1rem;
+   }
+ 
+   .btn-primary {
+     background-color: #1da1f2;
+     border-color: #1da1f2;
+   }
+ 
+   .btn-primary:hover {
+     background-color: #0d8ddb;
+     border-color: #0d8ddb;
+   }
+ 
+   .btn-primary:focus,
+   .btn-primary:active {
+     background-color: #0d8ddb;
+     border-color: #0d8ddb;
+   }
+ 
+   .btn-danger {
+     background-color: #e0245e;
+     border-color: #e0245e;
+   }
+ 
+   .btn-danger:hover {
+     background-color: #c81e51;
+     border-color: #c81e51;
+   }
+ 
+   .btn-danger:focus,
+   .btn-danger:active {
+     background-color: #c81e51;
+     border-color: #c81e51;
+   }
+ }
+ 
+ .user-form {
+   max-width: 400px;
+   margin: 2rem auto;
+   background-color: rgba(0, 0, 0, 0.6);
+   padding: 2rem;
+   border-radius: 8px;
+   color: #ffffff;
+ }
+ 
+ /* Global font color override */
+ th, td, label {
+   color: white !important;
+ }
+ 
