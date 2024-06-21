@@ -5,14 +5,14 @@
     </div>
 
     <section class="league-users">
-      <% @league.league_users.each do |league_user| %>
+      <% @league.league_users.sort_by { |league_user| -league_user.get_game_predictions() }.each_with_index do |league_user, index| %>
         <div class="league-user-summary">
-          <h3><%= league_user.user.name %></h3>
+          <h3><%= "#{index + 1}. #{league_user.user.name}" %></h3>
           <p>Points: <%= league_user.get_game_predictions() %></p>
         </div>
       <% end %>
     </section>
-
+    
     <section class="admin-actions">
       <%= link_to 'Edit', edit_tournament_league_path(@tournament, @league), class: 'btn btn-warning' %>
       <%= link_to 'Delete', tournament_league_path(@tournament, @league), class: 'btn btn-danger', data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
