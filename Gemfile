@@ -72,3 +72,6 @@ group :test do
   gem "selenium-webdriver"
 
 end
+
+gem 'will_paginate', '~> 3.3'
+
