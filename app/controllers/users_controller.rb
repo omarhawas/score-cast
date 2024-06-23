@@ -24,7 +24,7 @@
 
     def show
         @user = User.find(params[:id])
-        @game_predictions = @user.game_predictions.order(created_at: :asc).paginate(page: params[:page], per_page: 5)
+        @game_predictions = @user.game_predictions.order(created_at: :asc)
     end
 
     def edit
