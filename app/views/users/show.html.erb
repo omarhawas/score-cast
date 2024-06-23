@@ -1,6 +1,8 @@
 <h1><%= @user.name %></h1>
 
-<% @game_predictions.group_by { |prediction| prediction.game.tournament }.each do |tournament, predictions| %>
+<% grouped_predictions = @game_predictions.group_by { |prediction| prediction.game.tournament } %>
+
+<% grouped_predictions.each do |tournament, predictions| %>
   <h2><%= tournament.name %></h2>
   <div class="table-responsive">
     <table class="table table-striped custom-table">
@@ -15,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        <% predictions.each_with_index do |prediction, index| %>
+        <% predictions.sort_by { |prediction| prediction.game.id }.each_with_index do |prediction, index| %>
           <% game = prediction.game %>
           <% actual_points = game.home_team_goals.present? && game.away_team_goals.present? ? prediction.total_points : 0 %>
           <tr>
@@ -33,6 +35,5 @@
         </tr>
       </tbody>
     </table>
-    <%= will_paginate @game_predictions %>
   </div>
 <% end %>
