@@ -34,7 +34,7 @@
     <h2>Games</h2>
     <% if @tournament.games.any? %>
       <ul class="list-group">
-        <% @tournament.games.each do |game| %>
+        <% @tournament.games.sort_by(&:id).reverse.each do |game| %>
           <li class="list-group-item">
             <%= link_to game.home_team + ' vs ' + game.away_team, tournament_game_path(@tournament, game), class: "game-link text-danger" %>
           </li>
