@@ -48,7 +48,7 @@
 
   <div>
     <%= form.label :penalties_winner %>
-    <%= form.text_field :penalties_winner %>
+    <%= form.select :penalties_winner, options_for_select([[@game.home_team], [@game.away_team]]), { prompt: 'Select Penalties Winner' }, class: 'form-control' %>
   </div>
 
   <%= form.submit "Update Game" %>

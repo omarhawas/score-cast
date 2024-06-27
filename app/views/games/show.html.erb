@@ -24,6 +24,19 @@
           <th>Knockout Game</th>
           <td><%= @game.knockout_game ? 'Yes' : 'No' %></td>
         </tr>
+        <tr>
+        <tr>
+        <th>Home Team ET Goals</th>
+          <td><%= @game.home_team_et_goals %></td>
+        </tr>
+        <tr>
+          <th>Away Team ET Goals</th>
+        <td><%= @game.away_team_et_goals %></td>
+        </tr>
+          <th>Penalties Winner</th>
+          <td><%= @game.penalties_winner %></td>
+        </tr>
+
       </table>
     </div>
 

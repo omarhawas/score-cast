@@ -63,9 +63,7 @@ class GamesController < ApplicationController
     def calculate_points(game)
       game.game_predictions.each do |game_prediction|
         points_awarded = 0
-        if game.knockout_game
-
-        else
+          # group stage games
           if game.home_team_goals == game_prediction.home_team_goals && game.away_team_goals == game_prediction.away_team_goals
             points_awarded = 3
           else
@@ -76,8 +74,17 @@ class GamesController < ApplicationController
             elsif (actual_score_difference > 0 && predicted_score_difference > 0) || (actual_score_difference < 0 && predicted_score_difference < 0)
               points_awarded = 1
             end
-          end  
-        end
+          end
+          # knckout games
+          if game.knockout_game && game.home_team_et_goals == game_prediction.home_team_et_goals && game.away_team_et_goals == game_prediction.away_team_et_goals
+            points_awarded += 1
+          end
+
+          # penalties
+          if game.knockout_game && game.penalties_winner == game_prediction.penalties_winner
+            points_awarded += 1
+          end
+
         game_prediction.update(total_points: points_awarded)
         game_prediction.save
       end

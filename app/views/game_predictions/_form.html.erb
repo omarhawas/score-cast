@@ -19,6 +19,11 @@
       <%= form.label :away_team_et_goals, "#{@game.away_team} Extra Time Goals" %>
       <%= form.number_field :away_team_et_goals, class: "form-control" %>
     </div>
+
+    <div class="field">
+      <%= form.label :penalties_winner, "#{@game.penalties_winner} Penalties Winner" %>
+      <%= form.select :penalties_winner, options_for_select([["#{@game.home_team}"], ["#{@game.away_team}"]]), { prompt: 'Select Penalties Winner' }, class: 'form-control' %>
+    </div>
   <% end %>
 
   <div class="actions">

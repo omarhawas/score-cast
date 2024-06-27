@@ -12,8 +12,12 @@
           <th>Home Team</th>
           <th>Away Team</th>
           <th>Actual Score</th>
-          <th>Predicted Score</th>
-          <th>Points Gained.</th>
+          <th>Predicted Full-time Score</th>
+          <th>Actual Extra-time Score</th>
+          <th>Predicted Extra-time Score</th>
+          <th>Actual Penalties Winner</th>
+          <th>Predicted Penalties Winner</th>
+          <th>Points Gained</th>
         </tr>
       </thead>
       <tbody>
@@ -26,11 +30,15 @@
             <td><%= game.away_team %></td>
             <td><%= game.home_team_goals.present? && game.away_team_goals.present? ? "#{game.home_team_goals} - #{game.away_team_goals}" : "Game not started" %></td>
             <td><%= prediction.home_team_goals.present? && prediction.away_team_goals.present? ? "#{prediction.home_team_goals} - #{prediction.away_team_goals}" : "Prediction not available" %></td>
+            <td><%= game.home_team_et_goals.present? && game.away_team_et_goals.present? ? "#{game.home_team_et_goals} - #{game.away_team_et_goals}" : "Finished In Full-time" %></td>
+            <td><%= prediction.home_team_et_goals.present? && prediction.away_team_et_goals.present? ? "#{prediction.home_team_et_goals} - #{prediction.away_team_et_goals}" : "No Extra-time prediction" %></td>
+            <td><%= game.penalties_winner %></td>
+            <td><%= prediction.penalties_winner%> </td>
             <td><%= actual_points %></td>
           </tr>
         <% end %>
         <tr>
-          <td colspan="5" style="text-align: right;">Total Points:</td>
+          <td colspan="9" style="text-align: right;">Total Points:</td>
           <td><%= predictions.sum { |prediction| prediction.total_points.to_i }.to_i %></td>
         </tr>
       </tbody>
