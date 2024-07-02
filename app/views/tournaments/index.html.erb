@@ -11,7 +11,9 @@
     </section>
   <% end %>
 
-  <section class="admin">
-    <%= link_to "Add New Tournament", new_tournament_path, class: "btn btn-primary" %>
-  </section>
+  <% if super_admin? %>
+    <section class="admin">
+      <%= link_to "Add New Tournament", new_tournament_path, class: "btn btn-primary" %>
+    </section>
+  <% end %>
 </div>

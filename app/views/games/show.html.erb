@@ -25,24 +25,25 @@
           <td><%= @game.knockout_game ? 'Yes' : 'No' %></td>
         </tr>
         <tr>
-        <tr>
-        <th>Home Team ET Goals</th>
+          <th>Home Team ET Goals</th>
           <td><%= @game.home_team_et_goals %></td>
         </tr>
         <tr>
           <th>Away Team ET Goals</th>
-        <td><%= @game.away_team_et_goals %></td>
+          <td><%= @game.away_team_et_goals %></td>
         </tr>
+        <tr>
           <th>Penalties Winner</th>
           <td><%= @game.penalties_winner %></td>
         </tr>
-
       </table>
     </div>
 
     <section class="admin-actions">
-      <%= link_to 'Edit', edit_game_path(@game), class: 'btn btn-warning' %>
-      <%= link_to 'Delete', tournament_game_path(@tournament, @game), class: 'btn btn-danger', data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+      <% if super_admin? %>
+        <%= link_to 'Edit', edit_game_path(@game), class: 'btn btn-warning' %>
+        <%= link_to 'Delete', tournament_game_path(@tournament, @game), class: 'btn btn-danger', data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+      <% end %>
       <%= link_to 'Back', tournament_games_path(@tournament), class: 'btn btn-secondary' %>
       <%= link_to 'Add Prediction', new_game_game_prediction_path(@game), class: 'btn btn-primary' %>
     </section>

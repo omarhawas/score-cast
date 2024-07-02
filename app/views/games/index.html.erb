@@ -3,7 +3,7 @@
 
   <% if @tournament.games.any? %>
     <ul class="game-list">
-      <% @tournament.games.each do |game| %>
+      <% @tournament.games.order(:created_at).each do |game| %>
         <li class="game-item">
           <%= link_to "#{game.home_team} vs #{game.away_team}", tournament_game_path(@tournament, game), class: "game-link" %>
         </li>

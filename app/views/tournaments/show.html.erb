@@ -5,22 +5,30 @@
     </div>
   </div>
 
+  <% if super_admin? %>
+    <section class="admin mb-3">
+      <%= link_to "Edit", edit_tournament_path(@tournament), class: "btn btn-warning me-2" %>
+      <%= link_to "Delete", tournament_path(@tournament), class: "btn btn-danger me-2", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+    </section>
+  <% end %>
+
   <section class="admin mb-3">
-    <%= link_to "Edit", edit_tournament_path(@tournament), class: "btn btn-warning me-2" %>
-    <%= link_to "Delete", tournament_path(@tournament), class: "btn btn-danger me-2", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
     <%= link_to "All Tournaments", tournaments_path(@tournament), class: "btn btn-secondary" %>
   </section>
 
   <section class="leagues mb-3">
-    <% if @tournament.leagues.any? %>
+    <% if @leagues.any? %>
       <h2>Leagues</h2>
       <ul class="list-group">
-        <% @tournament.leagues.each do |league| %>
+        <% @leagues.each do |league| %>
           <li class="list-group-item">
             <%= link_to league.name, tournament_league_path(@tournament, league), class: "league-link text-danger" %>
           </li>
         <% end %>
       </ul>
+      <div class="pagination">
+        <%= will_paginate @leagues, param_name: 'leagues_page' %>
+      </div>
     <% else %>
       <p>No leagues found for this tournament.</p>
     <% end %>
@@ -32,20 +40,25 @@
 
   <section class="games mb-3">
     <h2>Games</h2>
-    <% if @tournament.games.any? %>
+    <% if @games.any? %>
       <ul class="list-group">
-        <% @tournament.games.sort_by(&:id).reverse.each do |game| %>
+        <% @games.each do |game| %>
           <li class="list-group-item">
             <%= link_to game.home_team + ' vs ' + game.away_team, tournament_game_path(@tournament, game), class: "game-link text-danger" %>
           </li>
         <% end %>
       </ul>
+      <div class="pagination">
+        <%= will_paginate @games, param_name: 'games_page' %>
+      </div>
     <% else %>
       <p>No games found for this tournament.</p>
     <% end %>
   </section>
 
-  <section class="new-game mb-3">
-    <%= link_to "Create New Game", new_tournament_game_path(@tournament), class: "btn btn-success" %>
-  </section>
+  <% if super_admin? %>
+    <section class="new-game mb-3">
+      <%= link_to "Create New Game", new_tournament_game_path(@tournament), class: "btn btn-success" %>
+    </section>
+  <% end %>
 </section>
