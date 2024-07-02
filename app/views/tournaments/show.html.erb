@@ -38,23 +38,68 @@
     <%= link_to 'New League', new_tournament_league_path(@tournament), class: 'btn btn-primary' %>
   </section>
 
-  <section class="games mb-3">
-    <h2>Games</h2>
-    <% if @games.any? %>
-      <ul class="list-group">
-        <% @games.each do |game| %>
-          <li class="list-group-item">
-            <%= link_to game.home_team + ' vs ' + game.away_team, tournament_game_path(@tournament, game), class: "game-link text-danger" %>
-          </li>
-        <% end %>
-      </ul>
-      <div class="pagination">
-        <%= will_paginate @games, param_name: 'games_page' %>
-      </div>
-    <% else %>
-      <p>No games found for this tournament.</p>
-    <% end %>
-  </section>
+ <section class="games mb-3">
+  <h2>Games</h2>
+  <% if @games.any? %>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <% @games.each do |game| %>
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= link_to "#{game.home_team} vs #{game.away_team}", tournament_game_path(@tournament, game), class: "game-link text-danger" %>
+              </h5>
+              <% if @user %>
+                <% user_prediction = @user.game_predictions.find_by(game: game) %>
+                <% if user_prediction %>
+                  <div class="prediction">
+                    <span class="badge bg-primary">Predicted: <%= user_prediction.home_team_goals %> - <%= user_prediction.away_team_goals %></span>
+                    <% if game.knockout_game %>
+                      <% if user_prediction.home_team_et_goals.present? && user_prediction.away_team_et_goals.present? %>
+                        <span class="badge bg-light-blue">ET: <%= user_prediction.home_team_et_goals %> - <%= user_prediction.away_team_et_goals %></span>
+                      <% end %>
+                      <% if user_prediction.penalties_winner.present? %>
+                        <span class="badge bg-light-blue">Penalties: <%= user_prediction.penalties_winner %></span>
+                      <% end %>
+                    <% end %>
+                  </div>
+                <% else %>
+                  <div class="prediction">
+                    <span class="badge bg-danger">No prediction</span>
+                  </div>
+                <% end %>
+                <% if game.home_team_goals.present? && game.away_team_goals.present? %>
+                  <div class="actual-score">
+                    <span class="badge bg-success">Actual: <%= game.home_team_goals %> - <%= game.away_team_goals %></span>
+                    <% if game.knockout_game %>
+                      <% if game.home_team_et_goals.present? && game.away_team_et_goals.present? %>
+                        <span class="badge bg-light-green">ET: <%= game.home_team_et_goals %> - <%= game.away_team_et_goals %></span>
+                      <% end %>
+                      <% if game.penalties_winner.present? %>
+                        <span class="badge bg-light-green">Penalties: <%= game.penalties_winner %></span>
+                      <% end %>
+                    <% end %>
+                  </div>
+                <% end %>
+              <% else %>
+                <div class="prediction">
+                  <span class="badge bg-info">Not logged in</span>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="pagination">
+      <%= will_paginate @games, param_name: 'games_page' %>
+    </div>
+  <% else %>
+    <p>No games found for this tournament.</p>
+  <% end %>
+</section>
+
+
 
   <% if super_admin? %>
     <section class="new-game mb-3">

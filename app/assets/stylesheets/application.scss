@@ -416,5 +416,52 @@
   border: 1px solid #1da1f2;
 }
 
+.card {
+  margin-bottom: 20px;
+}
 
- 
+.card-title {
+  margin-bottom: 10px;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.prediction, .actual-score {
+  margin-top: 10px;
+}
+
+.badge {
+  margin-right: 10px;
+  font-size: 14px;
+  padding: 8px;
+}
+
+.bg-primary, .bg-light-blue, .bg-success, .bg-light-green, .bg-danger, .bg-info {
+  color: white;
+}
+
+.bg-primary {
+  background-color: #007bff; /* Blue */
+}
+
+.bg-light-blue {
+  background-color: #6c757d; /* Light Blue */
+}
+
+.bg-success {
+  background-color: #28a745; /* Green */
+}
+
+.bg-light-green {
+  background-color: #6c757d; /* Light Green */
+}
+
+.bg-danger {
+  background-color: #dc3545; /* Red */
+}
+
+.bg-info {
+  background-color: #17a2b8; /* Cyan */
+}
