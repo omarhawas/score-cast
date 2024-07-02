@@ -21,21 +21,23 @@
         </tr>
       </thead>
       <tbody>
-        <% predictions.sort_by { |prediction| prediction.created_at }.each_with_index do |prediction, index| %>
-          <% game = prediction.game %>
-          <% actual_points = game.home_team_goals.present? && game.away_team_goals.present? ? prediction.total_points : 0 %>
-          <tr>
-            <td><%= index + 1 %></td>
-            <td><%= game.home_team %></td>
-            <td><%= game.away_team %></td>
-            <td><%= game.home_team_goals.present? && game.away_team_goals.present? ? "#{game.home_team_goals} - #{game.away_team_goals}" : "Game not started" %></td>
-            <td><%= prediction.home_team_goals.present? && prediction.away_team_goals.present? ? "#{prediction.home_team_goals} - #{prediction.away_team_goals}" : "Prediction not available" %></td>
-            <td><%= game.home_team_et_goals.present? && game.away_team_et_goals.present? ? "#{game.home_team_et_goals} - #{game.away_team_et_goals}" : "Finished In Full-time" %></td>
-            <td><%= prediction.home_team_et_goals.present? && prediction.away_team_et_goals.present? ? "#{prediction.home_team_et_goals} - #{prediction.away_team_et_goals}" : "No Extra-time prediction" %></td>
-            <td><%= game.penalties_winner %></td>
-            <td><%= prediction.penalties_winner %> </td>
-            <td><%= actual_points %></td>
-          </tr>
+        <% tournament.games.order(created_at: :asc).each_with_index do |game, index| %>
+          <% prediction = predictions.find { |pred| pred.game_id == game.id } %>
+          <% if prediction %>
+            <% actual_points = game.home_team_goals.present? && game.away_team_goals.present? ? prediction.total_points : 0 %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= game.home_team %></td>
+              <td><%= game.away_team %></td>
+              <td><%= game.home_team_goals.present? && game.away_team_goals.present? ? "#{game.home_team_goals} - #{game.away_team_goals}" : "Game not started" %></td>
+              <td><%= prediction.home_team_goals.present? && prediction.away_team_goals.present? ? "#{prediction.home_team_goals} - #{prediction.away_team_goals}" : "Prediction not available" %></td>
+              <td><%= game.home_team_et_goals.present? && game.away_team_et_goals.present? ? "#{game.home_team_et_goals} - #{game.away_team_et_goals}" : "Finished In Full-time" %></td>
+              <td><%= prediction.home_team_et_goals.present? && prediction.away_team_et_goals.present? ? "#{prediction.home_team_et_goals} - #{prediction.away_team_et_goals}" : "No Extra-time prediction" %></td>
+              <td><%= game.penalties_winner %></td>
+              <td><%= prediction.penalties_winner %> </td>
+              <td><%= actual_points %></td>
+            </tr>
+          <% end %>
         <% end %>
         <tr>
           <td colspan="9" style="text-align: right;">Total Points:</td>
