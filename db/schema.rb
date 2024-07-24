@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_09_140853) do
+ActiveRecord::Schema[7.0].define(version: 2024_07_13_224613) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_09_140853) do
     t.index ["tournament_id"], name: "index_leagues_on_tournament_id"
   end
 
+  create_table "tournament_predictions", force: :cascade do |t|
+    t.string "winner"
+    t.string "best_player"
+    t.string "top_scorer"
+    t.bigint "tournament_id", null: false
+    t.bigint "league_user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["league_user_id"], name: "index_tournament_predictions_on_league_user_id"
+    t.index ["tournament_id"], name: "index_tournament_predictions_on_tournament_id"
+  end
+
   create_table "tournaments", force: :cascade do |t|
     t.string "name"
     t.datetime "start_date"
@@ -90,4 +102,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_09_140853) do
   add_foreign_key "league_users", "leagues"
   add_foreign_key "league_users", "users"
   add_foreign_key "leagues", "tournaments"
+  add_foreign_key "tournament_predictions", "league_users"
+  add_foreign_key "tournament_predictions", "tournaments"
 end

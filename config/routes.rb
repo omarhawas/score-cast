@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  resources :tournament_predictions
   
   root "tournaments#index"
 
   resources :tournaments do
     resources :leagues 
-    resources :games    
+    resources :games
+    resources :tournament_predictions
   end
 
   resources :leagues do
@@ -18,7 +20,8 @@ Rails.application.routes.draw do
   get "signup" => "users#new"
 
   resources :league_users do
-    resources :game_predictions 
+    resources :game_predictions
+    resources :tournament_predictions
   end
 
   resources :games do

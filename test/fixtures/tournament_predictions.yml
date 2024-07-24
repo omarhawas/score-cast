@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  winner: MyString
+  best_player: MyString
+  top_scorer: MyString
+  tournament: one
+  league_user: one
+
+two:
+  winner: MyString
+  best_player: MyString
+  top_scorer: MyString
+  tournament: two
+  league_user: two

@@ -9,7 +9,7 @@ class TournamentsController < ApplicationController
         @leagues = @tournament.leagues.order(created_at: :desc).paginate(page: params[:leagues_page], per_page: 7)
         @games = @tournament.games.order(created_at: :desc).paginate(page: params[:games_page], per_page: 8)
         @user = current_user
-        @game_predictions = @user.game_predictions.where(game: @games) if @user
+        @game_predictions = @user.game_predictions
     end
 
     def edit
